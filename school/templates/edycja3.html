@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="/static/hack.css">
+  <link rel="stylesheet" href="/static/dark-grey.css">
+  <meta charset="UTF-8">
+  <title>Zmiana danych pracownika</title>
+  <style>
+    .main {
+      column-count: 4;
+      column-gap: 30px;
+      column-width: 110px;
+    }
+  </style>
+</head>
+
+<body class="hack dark-grey">
+  <div class="container justify-content-center">
+    <p></p>
+    <form action="edytuj3" method="post">
+      {% for e in employee %}
+      <p></p>
+      <font color="cyan" size="4"># Dane osobowe:</font>
+      <label for="numer"> </label>
+      <input id="numer" type="hidden" name="numer" value="{{e.employee_id}}" readonly="readonly">
+      <p></p>
+      <label for="your_name">Imię: </label>
+      <input id="your_name" type="text" name="your_name" maxlength="30" placeholder="Wpisz imię..."
+        value="{{ e.first_name }}" required>
+      <p></p>
+      <label for="middle_name">Drugie imię: </label>
+      <input id="middle_name" type="text" name="middle_name" maxlength="30" placeholder="Wpisz drugie imię..."
+        value="{{ e.middle_name }}" required>
+      <p></p>
+      <label for="last_name">Nazwisko: </label>
+      <input id="last_name" type="text" name="last_name" maxlength="30" placeholder="Wpisz nazwisko..."
+        value="{{ e.last_name }}" required>
+      <p></p>
+      <label for="salary">Pensja: </label>
+      <input id="salary" type="number" name="salary" min="0" max="999999" step="0.01" value="{{e.salary }}" required>
+      <p></p>
+      <label for="ptc_comission">Premia: </label>
+      <input id="ptc_comission" type="number" name="ptc_comission" min="0" max="99" step="0.01"
+        value="{{e.ptc_comission }}" required>
+      <p></p>
+      <label for="phone_number">Numer telefonu: </label>
+      <input id="phone_number" type="number" name="phone_number" min="100000000" max="999999999"
+        value="{{e.phone_number }}" required>
+      <p></p>
+      <label for="email">Email: </label>
+      <input id="email" type="text" name="email" maxlength="30" placeholder="Wpisz email..." value="{{ e.email }}"
+        required>
+      <p></p>
+      <label for="date">Data zatrudnienia: </label>
+      <input id="date" type="date" name="date" value="1920-01-01">
+      <p></p>
+      <font color="cyan" size="4"># Dane adresowe:</font>
+      <p></p>
+      {% for ad in adres %}
+      <label for="numer_adresu"></label>
+      <input id="numer_adresu" type="hidden" name="numer_adresu" value="{{ad.address_id}}" readonly="readonly">
+      <p></p>
+      <label for="street_address">Adres: </label>
+      <input id="street_address" type="text" name="street_address" maxlength="30" placeholder="Wpisz adres..."
+        value="{{ ad.street_address }}" required>
+      <p></p>
+      <label for="postal_code">Kod pocztowy (bez myślnika np 12345): </label>
+      <input id="postal_code" type="number" name="postal_code" min="10000" max="99999"
+        placeholder="Wpisz kod pocztowy..." value="{{ ad.postal_code }}" required>
+      <p></p>
+      <label for="city">Miasto: </label>
+      <input id="city" type="text" name="city" maxlength="40" placeholder="Wpisz miasto..." value="{{ ad.city }}"
+        required>
+      <p></p>
+      <label for="country_name">Kraj: </label>
+      <input id="country_name" type="text" name="country_name" maxlength="30" placeholder="Wpisz kraj..."
+        value="{{ ad.country_name }}" required>
+      <p></p>
+      {% endfor %}
+
+      <p></p>
+      <font color="cyan" size="4"># Dane pracownika:</font>
+      <p></p>
+
+      Dostępni managerowie:
+
+      <div class="main">
+        {% for k in manager %}
+        {{k.employee_id}}. {{k.first_name}} {{k.last_name}} <br />
+        {% endfor %}
+      </div>
+      {% for k in manager %}
+      {% if k.employee_id == e.manager_id %}
+      <label for="manager_id">Manager: (podaj numer) </label>
+      <input id="manager_id" type="number" name="manager_id" min="1" max="100" maxlength="3"
+        placeholder="Wpisz numer..." value="{{ k.employee_id}}" required>
+      {% endif %}
+      {% endfor %}
+
+      <p></p>
+      Dostępne stanowiska:
+      <div class="main">
+        {% for k in praca %}
+        {{k.job_id}}. {{k.job_title}}<br/>
+        {% endfor %}
+      </div>
+      {% for k in praca %}
+      {% if k.job_id == e.job_id %}
+      <label for="job_id">Stanowisko: (podaj numer) </label>
+      <input id="job_id" type="number" name="job_id" min="1" max="22" maxlength="1" placeholder="Wpisz numer..."
+        value="{{ k.job_id}}" required>
+      {% endif %}
+      {% endfor %}
+      <p></p>
+      <p></p>
+      Dostępne departamenty:
+      <div class="main">
+        {% for k in departament %}
+        {{k.department_id}}. {{k.department_name}}<br/>
+        {% endfor %}
+      </div>
+      {% for k in departament %}
+      {% if k.department_id == e.department_id %}
+      <label for="department_id">Departament: (podaj numer) </label>
+      <input id="department_id" type="number" name="department_id" min="1" max="4" maxlength="1"
+        placeholder="Wpisz numer..." value="{{ k.department_id}}" required>
+      {% endif %}
+      {% endfor %}
+      <p></p>
+      <input type="submit" value="OK">
+      {% endfor %}
+    </form>
+    <form>
+      <input type="button" value="Powrót" onclick="history.back()">
+    </form>
+  </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="/static/hack.css" />
+  <link rel="stylesheet" href="/static/dark-grey.css" />
+  <meta charset="UTF-8" />
+  <title>Pracownicy</title>
+</head>
+
+<body class="hack dark-grey">
+
+  <div class="grid">
+    <div class="cell -1of12"></div>
+    <div class="cell -10of12">
+
+        <div class="container">
+            <p></p>
+            <form class="form justify-content-center" method="POST" action="dodaj1">
+              <fieldset class="form-group">
+                <input type="hidden" name='nr_pracownika' value="1" class="form-control" readonly="readonly">
+              </fieldset>
+              <div class="form-actions">
+                <button type="submit" action='submit' class="btn btn-primary btn-block">Dodaj nowego pracownika!</button>
+              </div>
+            </form>
+        
+        
+            <p></p>
+        
+        
+          </div>
+
+      <font size="4">Lista wszystkich pracowników</font>
+      <table border="1" width="1000">
+        <tr>
+          <td>ID</td>
+          <td>Imię</td>
+          <td>Drugie imię</td>
+          <td>Nazwisko</td>
+          <td>Pensja</td>
+          <td>Premia</td>
+          <td>Numer</td>
+          <td>Email</td>
+          <TD>Data zatrudnienia</TD>
+          <td>Stanowisko</td>
+          <td>Akcje</td>
+        </tr>
+
+        {% for emp in allemployees %}
+        <tr>
+          <td>{{ emp.employee_id }}</td>
+          <td>{{ emp.first_name }}</td>
+          <td>{{ emp.middle_name }}</td>
+          <td>{{ emp.last_name }}</td>
+          <td>{{ emp.salary }}</td>
+          <td>{{ emp.ptc_comission }}</td>
+          <td>{{ emp.phone_number }}</td>
+          <td>{{ emp.email }}</td>
+          <td>{{ emp.hire_date }}</td>
+
+
+          {% for job in prace %}
+					{% if job.job_id == emp.job_id %}
+					<td>{{job.job_title}}</td>
+					{% endif %}
+					{% endfor %}
+
+
+
+          <td>
+            <form class="form justify-content-center" method="POST" action="wezdane3">
+              <fieldset class="form-group">
+                <input type="hidden" name='nr_pracownika' value={{emp.employee_id }} class="form-control"
+                  readonly="readonly">
+              </fieldset>
+              <div class="form-actions">
+                <button type="submit" action='submit' class="btn btn-primary btn-xs">Edytuj dane pracownika!</button>
+              </div>
+            </form>
+            <form class="form justify-content-center" method="POST" action="usun1">
+              <fieldset class="form-group">
+                <input type="hidden" name='nr_pracownika' value={{emp.employee_id }} class="form-control"
+                  readonly="readonly">
+              </fieldset>
+              <div class="form-actions">
+                <button type="submit" action='submit' class="btn btn-primary btn-xs">Usuń pracownika!</button>
+              </div>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+
+    </div>
+    <div class="cell -1of12"></div>
+  </div>
+
+
+
+  
+</body>
+
+</html>
