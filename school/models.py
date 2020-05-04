@@ -45,8 +45,10 @@ class Employees(models.Model):
     first_name = models.CharField(max_length=20, blank=True, null=True)
     middle_name = models.CharField(max_length=20, blank=True, null=True)
     last_name = models.CharField(max_length=20, blank=True, null=True)
-    salary = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    ptc_comission = models.DecimalField(max_digits=4, decimal_places=2, blank=True, null=True)
+    salary = models.DecimalField(
+        max_digits=8, decimal_places=2, blank=True, null=True)
+    ptc_comission = models.DecimalField(
+        max_digits=4, decimal_places=2, blank=True, null=True)
     phone_number = models.IntegerField(blank=True, null=True)
     email = models.CharField(max_length=40, blank=True, null=True)
     address = models.ForeignKey(Addresses, models.DO_NOTHING)
@@ -73,8 +75,10 @@ class JobHistory(models.Model):
 class Jobs(models.Model):
     job_id = models.AutoField(primary_key=True)
     job_title = models.CharField(max_length=40, blank=True, null=True)
-    min_salary = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    max_salary = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    min_salary = models.DecimalField(
+        max_digits=8, decimal_places=2, blank=True, null=True)
+    max_salary = models.DecimalField(
+        max_digits=8, decimal_places=2, blank=True, null=True)
 
     class Meta:
         db_table = 'jobs'
@@ -99,14 +103,15 @@ class Students(models.Model):
     last_name = models.CharField(max_length=20, blank=True, null=True)
     gender = models.CharField(max_length=1, blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
-    class_field = models.ForeignKey(Classes, models.DO_NOTHING, db_column='class_id')  # Field renamed because it was a Python reserved word.
+    # Field renamed because it was a Python reserved word.
+    class_field = models.ForeignKey(
+        Classes, models.DO_NOTHING, db_column='class_id')
     pesel = models.IntegerField(blank=True, null=True)
     parent = models.ForeignKey(Parents, models.DO_NOTHING)
     address = models.ForeignKey(Addresses, models.DO_NOTHING)
-    
 
     def aaa(self):
-	return '%s' % (self.student_id)
+        return '%s' % (self.student_id)
 
     class Meta:
         db_table = 'students'

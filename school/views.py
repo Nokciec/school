@@ -12,12 +12,10 @@ from .models import Employees
 from .models import Jobs
 from .models import Departments
 #
-from flask_session import Session
+
 from django.shortcuts import redirect
-from flask import Flask, render_template, request,  session, url_for
-#dobrze dziala to powyzej 
-app = Flask(__name__)
-app.secret_key = 'something'
+
+
 
 #dobrze dziala!!!! to ponizej
 def zalogowanie(request):
