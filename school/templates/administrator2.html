@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 
 <head>
@@ -101,4 +101,101 @@
   
 </body>
 
+</html> -->
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pracownicy</title>
+    <link rel="stylesheet" href="/static/style/administrator2/css/style.min.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="addEmpl">
+        <form method="POST" action="dodaj1">
+          <input
+            type="hidden"
+            name="nr_pracownika"
+            value="1"
+            class="form-control"
+            readonly="readonly"
+          />
+          <div>
+            <button type="submit" action="submit">
+              Dodaj nowego pracownika!
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <h2>Lista wszystkich pracowników</h2>
+      <table>
+        <tr>
+          <td>ID</td>
+          <td>Imię</td>
+          <td>Drugie imię</td>
+          <td>Nazwisko</td>
+          <td>Pensja</td>
+          <td>Premia</td>
+          <td>Numer</td>
+          <td>Email</td>
+          <td>Data zatrudnienia</td>
+          <td>Stanowisko</td>
+          <td>Akcje</td>
+        </tr>
+
+        {% for emp in allemployees %}
+        <tr class="even">
+          <td>{{ emp.employee_id }}</td>
+          <td>{{ emp.first_name }}</td>
+          <td>{{ emp.middle_name }}</td>
+          <td>{{ emp.last_name }}</td>
+          <td>{{ emp.salary }}</td>
+          <td>{{ emp.ptc_comission }}</td>
+          <td>{{ emp.phone_number }}</td>
+          <td>{{ emp.email }}</td>
+          <td>{{ emp.hire_date }}</td>
+
+          {% for job in prace %} {% if job.job_id == emp.job_id %}
+          <td>{{job.job_title}}</td>
+          {% endif %} {% endfor %}
+
+          <td>
+            <form method="POST" action="wezdane3">
+              <input
+                type="hidden"
+                name="nr_pracownika"
+                value="{{emp.employee_id}}"
+                class="form-control"
+                readonly="readonly"
+              />
+              <div class="btnWrapper">
+                <button class="emplData" type="submit" action="submit">
+                  Edytuj dane pracownika!
+                </button>
+              </div>
+            </form>
+            <form method="POST" action="usun1">
+              <input
+                type="hidden"
+                name="nr_pracownika"
+                value="{{emp.employee_id}}"
+                class="form-control"
+                readonly="readonly"
+              />
+              <div class="btnWrapper">
+                <button class="emplData" type="submit" action="submit">
+                  Usuń pracownika!
+                </button>
+              </div>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </body>
 </html>

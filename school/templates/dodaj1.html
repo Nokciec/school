@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 
 <head>
@@ -112,4 +112,222 @@
   </div>
 </body>
 
+</html> -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dodanie nowego pracownika</title>
+    <link rel="stylesheet" href="/static/style/dodaj1/css/style.min.css" />
+  </head>
+
+  <body>
+    <div class="form">
+      <form action="dodawanieDoBazy" method="post">
+        <div class="input">
+          <div class="inputBox">
+            <label for="numer"> </label>
+            <input id="numer" type="hidden" name="numer" readonly="readonly" />
+            <label for="your_name">Imię: </label>
+            <input
+              id="your_name"
+              type="text"
+              name="your_name"
+              maxlength="30"
+              placeholder="Wpisz imię..."
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="middle_name">Drugie imię: </label>
+            <input
+              id="middle_name"
+              type="text"
+              name="middle_name"
+              maxlength="30"
+              placeholder="Wpisz drugie imię..."
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="last_name">Nazwisko: </label>
+            <input
+              id="last_name"
+              type="text"
+              name="last_name"
+              maxlength="30"
+              placeholder="Wpisz nazwisko..."
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="salary">Pensja: </label>
+            <input
+              id="salary"
+              type="number"
+              name="salary"
+              min="0"
+              max="999999"
+              step="0.01"
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="ptc_comission">Premia: </label>
+            <input
+              id="ptc_comission"
+              type="number"
+              name="ptc_comission"
+              min="0"
+              max="99"
+              step="0.01"
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="phone_number">Numer telefonu: </label>
+            <input
+              id="phone_number"
+              type="number"
+              name="phone_number"
+              min="100000000"
+              max="999999999"
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="email">Email: </label>
+            <input
+              id="email"
+              type="text"
+              name="email"
+              maxlength="30"
+              placeholder="Wpisz email..."
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="date">Data zatrudnienia: </label>
+            <input id="date" type="date" name="date" />
+          </div>
+          <div class="inputBox">
+            <label for="numer_adresu"> </label>
+            <input id="numer_adresu" type="hidden" name="numer_adresu" readonly="readonly" />
+            <label for="street_address">Adres: </label>
+            <input
+              id="street_address"
+              type="text"
+              name="street_address"
+              maxlength="30"
+              placeholder="Wpisz adres..."
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="postal_code">Kod pocztowy (bez myślnika np 12345): </label>
+            <input
+              id="postal_code"
+              type="number"
+              name="postal_code"
+              min="10000"
+              max="99999"
+              placeholder="Wpisz kod pocztowy..."
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="city">Miasto: </label>
+            <input
+              id="city"
+              type="text"
+              name="city"
+              maxlength="40"
+              placeholder="Wpisz miasto..."
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="country_name">Kraj: </label>
+            <input
+              id="country_name"
+              type="text"
+              name="country_name"
+              maxlength="30"
+              placeholder="Wpisz kraj..."
+              required
+            />
+          </div>
+
+          <h2># Dane pracownika:</h2>
+
+          <div class="titles">Dostępni managerowie:</div>
+          <div class="main">
+            {% for k in manager %} {{k.employee_id}}. {{k.first_name}} {{k.last_name}} <br />
+            {% endfor %}
+          </div>
+          <div class="inputBox">
+            <label for="manager_id">Manager: (wpisz numer) </label>
+            <input
+              id="manager_id"
+              type="number"
+              name="manager_id"
+              min="1"
+              max="100"
+              maxlength="3"
+              placeholder="Wpisz numer..."
+            />
+          </div>
+
+          <div class="titles">Dostępne stanowiska:</div>
+          <div class="main">
+            {% for k in praca %} {{k.job_id}}. {{k.job_title}}<br />
+            {% endfor %}
+          </div>
+          <div class="inputBox">
+            <label for="job_id">Stanowisko: (wpisz numer) </label>
+            <input
+              id="job_id"
+              type="number"
+              name="job_id"
+              min="1"
+              max="22"
+              maxlength="1"
+              placeholder="Wpisz numer..."
+              required
+            />
+          </div>
+
+          <div class="titles">Dostępne departamenty:</div>
+          <div class="main">
+            {% for k in departament %} {{k.department_id}}. {{k.department_name}}<br />
+            {% endfor %}
+          </div>
+          <div class="inputBox">
+            <label for="department_id">Departament: (wpisz numer) </label>
+            <input
+              id="department_id"
+              type="number"
+              name="department_id"
+              min="1"
+              max="4"
+              maxlength="1"
+              placeholder="Wpisz numer..."
+              required
+            />
+          </div>
+          <div class="inputBox btnCenter">
+            <input type="submit" value="OK" />
+          </div>
+        </div>
+      </form>
+      <form class="input">
+        <div class="inputBox btnCenter">
+          <input type="button" value="Powrót" onclick="history.back()" />
+        </div>
+      </form>
+    </div>
+  </body>
 </html>
+
+
+

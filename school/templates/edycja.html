@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 
 <head>
@@ -121,4 +121,264 @@
   </div>
 </body>
 
+</html> -->
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Zmiana danych ucznia</title>
+    <link rel="stylesheet" href="/static/style/edycja/css/style.min.css" />
+  </head>
+
+  <body>
+    <div class="form">
+      <form action="edytuj1" method="post">
+        <div class="input">
+          {% for s in student %}
+
+          <h2># Dane ucznia:</h2>
+          <div class="inputBox">
+            <label for="numer"> </label>
+            <input
+              id="numer"
+              type="hidden"
+              name="numer"
+              value="{{s.student_id}}"
+              readonly="readonly"
+            />
+          </div>
+          <div class="inputBox">
+            <label for="your_name">Imię: </label>
+            <input
+              id="your_name"
+              type="text"
+              name="your_name"
+              maxlength="30"
+              placeholder="Wpisz imię..."
+              value="{{ s.first_name }}"
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="middle_name">Drugie imię: </label>
+            <input
+              id="middle_name"
+              type="text"
+              name="middle_name"
+              maxlength="30"
+              placeholder="Wpisz drugie imię..."
+              value="{{ s.middle_name }}"
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="last_name">Nazwisko: </label>
+            <input
+              id="last_name"
+              type="text"
+              name="last_name"
+              maxlength="30"
+              placeholder="Wpisz nazwisko..."
+              value="{{ s.last_name }}"
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="gender">Płeć: (wpisz M lub F)</label>
+            <input
+              id="gender"
+              type="text"
+              name="gender"
+              maxlength="1"
+              value="{{ s.gender }}"
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="date">Data urodzenia: </label>
+            <input id="date" type="date" name="date" value="1920-01-01" />
+          </div>
+          <div class="inputBox">
+            <label for="class_id">Klasa: (1-8) (A-C) </label>
+
+            {% for k in klasy %} {% if k.class_id == s.class_field_id %}
+            <input
+              id="class_id"
+              type="text"
+              name="class_id"
+              maxlength="2"
+              placeholder="Wpisz klasę..."
+              value="{{ k.level }}{{k.letter}}"
+              required
+            />
+
+            {% endif %} {% endfor %}
+          </div>
+          <div class="inputBox">
+            <label for="pesel">Pesel: </label>
+            <input
+              id="pesel"
+              type="number"
+              name="pesel"
+              min="10000000000"
+              max="99999999999"
+              placeholder="Wpisz pesel..."
+              value="{{ s.pesel }}"
+              required
+            />
+          </div>
+
+          <h2># Dane rodzica:</h2>
+          {% for r in rodzic %}
+          <div class="inputBox">
+            <label for="numer_rodzica"> </label>
+            <input
+              id="numer_rodzica"
+              type="hidden"
+              name="numer_rodzica"
+              value="{{r.parent_id}}"
+              readonly="readonly"
+            />
+          </div>
+
+          <div class="inputBox">
+            <label for="imie_rodzica">Imię rodzica: </label>
+            <input
+              id="imie_rodzica"
+              type="text"
+              name="imie_rodzica"
+              maxlength="20"
+              placeholder="Wpisz imię rodzica..."
+              value="{{ r.first_name }}"
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="nazwisko_rodzica">Nazwisko rodzica: </label>
+            <input
+              id="nazwisko_rodzica"
+              type="text"
+              name="nazwisko_rodzica"
+              maxlength="20"
+              placeholder="Wpisz nazwisko rodzica..."
+              value="{{ r.last_name }}"
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="status_rodzica">Status rodzica (wpisz P (rodzic) lub G(opiekun)): </label>
+            <input
+              id="status_rodzica"
+              type="text"
+              name="status_rodzica"
+              maxlength="1"
+              placeholder="Wpisz status rodzica..."
+              value="{{ r.status }}"
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="phone_number_rodzica">Numer telefonu rodzica: </label>
+            <input
+              id="phone_number_rodzica"
+              type="number"
+              name="phone_number_rodzica"
+              min="100000000"
+              max="999999999"
+              placeholder="Wpisz numer telefonu..."
+              value="{{ r.phone_number }}"
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="email_rodzica">Adres email rodzica: </label>
+            <input
+              id="email_rodzica"
+              type="text"
+              name="email_rodzica"
+              maxlength="40"
+              placeholder="Wpisz email rodzica..."
+              value="{{ r.email }}"
+              required
+            />
+
+            {% endfor %} {% for ad in adres %}
+          </div>
+          <h2># Dane adresowe:</h2>
+          <div class="inputBox">
+            <label for="numer_adresu"> </label>
+            <input
+              id="numer_adresu"
+              type="hidden"
+              name="numer_adresu"
+              value="{{ad.address_id}}"
+              readonly="readonly"
+            />
+          </div>
+          <div class="inputBox">
+            <label for="street_address">Adres: </label>
+            <input
+              id="street_address"
+              type="text"
+              name="street_address"
+              maxlength="30"
+              placeholder="Wpisz adres..."
+              value="{{ ad.street_address }}"
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="postal_code">Kod pocztowy (bez myślnika np 12345): </label>
+            <input
+              id="postal_code"
+              type="number"
+              name="postal_code"
+              min="10000"
+              max="99999"
+              placeholder="Wpisz kod pocztowy..."
+              value="{{ ad.postal_code }}"
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="city">Miasto: </label>
+            <input
+              id="city"
+              type="text"
+              name="city"
+              maxlength="40"
+              placeholder="Wpisz miasto..."
+              value="{{ ad.city }}"
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="country_name">Kraj: </label>
+            <input
+              id="country_name"
+              type="text"
+              name="country_name"
+              maxlength="30"
+              placeholder="Wpisz kraj..."
+              value="{{ ad.country_name }}"
+              required
+            />
+          </div>
+          {% endfor %}
+
+          <div class="inputBox btnCenter">
+            <input type="submit" value="OK" />
+          </div>
+          {% endfor %}
+        </div>
+      </form>
+      <form class="input">
+        <div class="inputBox btnCenter">
+          <input type="button" value="Powrót" onclick="history.back()" />
+        </div>
+      </form>
+    </div>
+  </body>
 </html>
