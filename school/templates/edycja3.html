@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 
 <head>
@@ -138,4 +138,263 @@
   </div>
 </body>
 
+</html> -->
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Zmiana danych pracownika</title>
+    <link rel="stylesheet" href="/static/style/edycja3/css/style.min.css" />
+  </head>
+
+  <body>
+      {% for e in employee %}
+    <div class="form">
+      <form action="edytuj3" method="post">
+        <div class="input">
+          <h2># Dane osobowe:</h2>
+          <div class="inputBox">
+            <label for="numer"> </label>
+            <input
+              id="numer"
+              type="hidden"
+              name="numer"
+              value="{{e.employee_id}}"
+              readonly="readonly"
+            />
+          </div>
+          <div class="inputBox">
+            <label for="your_name">Imię: </label>
+            <input
+              id="your_name"
+              type="text"
+              name="your_name"
+              maxlength="30"
+              placeholder="Wpisz imię..."
+              value="{{ e.first_name }}"
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="middle_name">Drugie imię: </label>
+            <input
+              id="middle_name"
+              type="text"
+              name="middle_name"
+              maxlength="30"
+              placeholder="Wpisz drugie imię..."
+              value="{{ e.middle_name }}"
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="last_name">Nazwisko: </label>
+            <input
+              id="last_name"
+              type="text"
+              name="last_name"
+              maxlength="30"
+              placeholder="Wpisz nazwisko..."
+              value="{{ e.last_name }}"
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="salary">Pensja: </label>
+            <input
+              id="salary"
+              type="number"
+              name="salary"
+              min="0"
+              max="999999"
+              step="0.01"
+              value="{{e.salary }}"
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="ptc_comission">Premia: </label>
+            <input
+              id="ptc_comission"
+              type="number"
+              name="ptc_comission"
+              min="0"
+              max="99"
+              step="0.01"
+              value="{{e.ptc_comission }}"
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="phone_number">Numer telefonu: </label>
+            <input
+              id="phone_number"
+              type="number"
+              name="phone_number"
+              min="100000000"
+              max="999999999"
+              value="{{e.phone_number }}"
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="email">Email: </label>
+            <input
+              id="email"
+              type="text"
+              name="email"
+              maxlength="30"
+              placeholder="Wpisz email..."
+              value="{{ e.email }}"
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="date">Data zatrudnienia: </label>
+            <input id="date" type="date" name="date" value="1920-01-01" />
+          </div>
+          <h2># Dane adresowe:</h2>
+          {% for ad in adres %}
+          <div class="inputBox">
+            <label for="numer_adresu"></label>
+            <input
+              id="numer_adresu"
+              type="hidden"
+              name="numer_adresu"
+              value="{{ad.address_id}}"
+              readonly="readonly"
+            />
+          </div>
+          <div class="inputBox">
+            <label for="street_address">Adres: </label>
+            <input
+              id="street_address"
+              type="text"
+              name="street_address"
+              maxlength="30"
+              placeholder="Wpisz adres..."
+              value="{{ ad.street_address }}"
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="postal_code">Kod pocztowy (bez myślnika np 12345): </label>
+            <input
+              id="postal_code"
+              type="number"
+              name="postal_code"
+              min="10000"
+              max="99999"
+              placeholder="Wpisz kod pocztowy..."
+              value="{{ ad.postal_code }}"
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="city">Miasto: </label>
+            <input
+              id="city"
+              type="text"
+              name="city"
+              maxlength="40"
+              placeholder="Wpisz miasto..."
+              value="{{ ad.city }}"
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <label for="country_name">Kraj: </label>
+            <input
+              id="country_name"
+              type="text"
+              name="country_name"
+              maxlength="30"
+              placeholder="Wpisz kraj..."
+              value="{{ ad.country_name }}"
+              required
+            />
+          </div>
+          {% endfor %}
+
+          <h2># Dane pracownika:</h2>
+
+          <div class="titles">Dostępni managerowie:</div>
+
+          <div class="main">
+            {% for k in manager %} {{k.employee_id}}. {{k.first_name}} {{k.last_name}} <br />
+            {% endfor %}
+          </div>
+          {% for k in manager %} {% if k.employee_id == e.manager_id %}
+          <div class="inputBox">
+            <label for="manager_id">Manager: (podaj numer) </label>
+            <input
+              id="manager_id"
+              type="number"
+              name="manager_id"
+              min="1"
+              max="100"
+              maxlength="3"
+              placeholder="Wpisz numer..."
+              value="{{ k.employee_id}}"
+              required
+            />
+          </div>
+          {% endif %} {% endfor %}
+          <div class="titles">Dostępne stanowiska:</div>
+          <div class="main">
+            {% for k in praca %} {{k.job_id}}. {{k.job_title}}<br />
+            {% endfor %}
+          </div>
+          {% for k in praca %} {% if k.job_id == e.job_id %}
+          <div class="inputBox">
+            <label for="job_id">Stanowisko: (podaj numer) </label>
+            <input
+              id="job_id"
+              type="number"
+              name="job_id"
+              min="1"
+              max="22"
+              maxlength="1"
+              placeholder="Wpisz numer..."
+              value="{{ k.job_id}}"
+              required
+            />
+          </div>
+          {% endif %} {% endfor %}
+          <div class="titles">Dostępne departamenty:</div>
+          <div class="main">
+            {% for k in departament %} {{k.department_id}}. {{k.department_name}}<br />
+            {% endfor %}
+          </div>
+          {% for k in departament %} {% if k.department_id == e.department_id %}
+          <div class="inputBox">
+            <label for="department_id">Departament: (podaj numer) </label>
+            <input
+              id="department_id"
+              type="number"
+              name="department_id"
+              min="1"
+              max="4"
+              maxlength="1"
+              placeholder="Wpisz numer..."
+              value="{{ k.department_id}}"
+              required
+            />
+          </div>
+          {% endif %} {% endfor %}
+          <div class="inputBox btnCenter">
+            <input type="submit" value="OK" />
+          </div>
+          {% endfor %}
+        </div>
+      </form>
+      <form class="input">
+        <div class="inputBox btnCenter">
+          <input type="button" value="Powrót" onclick="history.back()" />
+        </div>
+      </form>
+    </div>
+  </body>
 </html>
