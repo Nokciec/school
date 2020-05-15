@@ -126,15 +126,15 @@
       <h2>Lista wszystkich uczniów</h2>
       <table>
         <tr>
-          <td>ID</td>
-          <td>Imię</td>
-          <td>Drugie imię</td>
-          <td>Nazwisko</td>
-          <td>Płeć</td>
-          <td>Data urodzenia</td>
-          <td>Klasa</td>
-          <td>Pesel</td>
-          <td>Akcje</td>
+          <th>ID <input style="width:30px" type="text" id="IDInput" onkeyup="findBy(0)" placeholder="ID"></th>
+          <th>Imię <input style="width:30px" type="text" id="FirstNameInput" onkeyup="findBy(1)" placeholder="Imię"></th>
+          <th>Drugie imię <input style="width:30px" type="text" id="SecondNameInput" onkeyup="findBy(2)" placeholder="Drugie imię"></th>
+          <th>Nazwisko <input  style="width:30px" type="text" id="LastNameInput" onkeyup="findBy(3)" placeholder="Szukaj"></th>
+          <th>Płeć <input  style="width:30px" type="text" id="GenderInput" onkeyup="findBy(4)" placeholder="Szukaj"></th>
+          <th>Data urodzenia <input style="width:30px"  type="text" id="BirthDateInput" onkeyup="findBy(5)" placeholder="Szukaj"></th>
+          <th>Klasa <input  style="width:30px" type="text" id="GradeInput" onkeyup="findBy(6)" placeholder="Szukaj"></th>
+          <th>Pesel <input style="width:30px" type="text" id="PeselInput" onkeyup="findBy(7)" placeholder="Szukaj"></th>
+          <th>Akcje</th>
         </tr>
 
         {% for student in allstudents %}
@@ -186,5 +186,59 @@
         {% endfor %}
       </table>
     </div>
+
+<script type="text/javascript">
+
+function find(elementsID, position) {
+
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById(elementsID);
+  filter = input.value.toUpperCase();
+  table = document.getElementsByTagName("table")[0];
+  table2 = table.getElementsByTagName("tbody")[0];
+  tr = table2.getElementsByTagName("tr");
+
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[position];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+
+function findBy(whichInput) {
+  if (whichInput == 0) {
+    find("IDInput", 0)
+  }
+  else if (whichInput == 1) {
+    find("FirstNameInput", 1)
+  }
+  else if (whichInput == 2) {
+    find("SecondNameInput", 2)
+  }
+  else if (whichInput == 3) {
+    find("LastNameInput", 3)
+  }
+  else if (whichInput == 4) {
+    find("GenderInput", 4)
+  }
+  else if (whichInput == 5) {
+    find("BirthDateInput", 5)
+  }
+  else if (whichInput == 6) {
+    find("GradeInput", 6)
+  }
+  else if (whichInput == 7) {
+    find("PeselInput", 7)
+  }
+  else console.log("Coś nie tak")
+}
+</script>
   </body>
 </html>
