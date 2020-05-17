@@ -109,6 +109,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Pracownicy</title>
+    <link rel="stylesheet" href="/static/searchstyle.css" />
     <link rel="stylesheet" href="/static/style/administrator2/css/style.min.css" />
   </head>
 
@@ -134,16 +135,16 @@
       <h2>Lista wszystkich pracowników</h2>
       <table>
         <tr>
-          <td>ID</td>
-          <td>Imię</td>
-          <td>Drugie imię</td>
-          <td>Nazwisko</td>
-          <td>Pensja</td>
-          <td>Premia</td>
-          <td>Numer</td>
-          <td>Email</td>
-          <td>Data zatrudnienia</td>
-          <td>Stanowisko</td>
+          <th>ID <div class="search-div"><input class="searchbar" type="text" id="IDInput" onkeyup="findBy(0)" placeholder="Szukaj..."></div></th>
+          <th>Imię <div class="search-div"><input class="searchbar" type="text" id="FirstNameInput" onkeyup="findBy(1)" placeholder="Szukaj..."></div></th>
+          <th>Drugie imię <div class="search-div"><input class="searchbar" type="text" id="SecondNameInput" onkeyup="findBy(2)" placeholder="Szukaj..."></div></th>
+          <th>Nazwisko <div class="search-div"><input  class="searchbar" type="text" id="LastNameInput" onkeyup="findBy(3)" placeholder="Szukaj..."></div></th>
+          <th>Pensja <div class="search-div"><input class="searchbar" type="text" id="SalaryInput" onkeyup="findBy(4)" placeholder="Szukaj..."></div></th>
+          <th>Premia <div class="search-div"><input class="searchbar" type="text" id="BonusInput" onkeyup="findBy(5)" placeholder="Szukaj..."></div></th>
+          <th>Numer <div class="search-div"><input class="searchbar" type="text" id="PhoneInput" onkeyup="findBy(6)" placeholder="Szukaj..."></div></th>
+          <th>Email <div class="search-div"><input  class="searchbar" type="text" id="EmailInput" onkeyup="findBy(7)" placeholder="Szukaj..."></div></th>
+          <th>Data zatrudnienia <div class="search-div"><input class="searchbar" type="text" id="DateInput" onkeyup="findBy(8)" placeholder="Szukaj..."></div></th>
+          <th>Stanowisko<div class="search-div"><input class="searchbar" type="text" id="PositionInput" onkeyup="findBy(9)" placeholder="Szukaj..."></div></th>
           <td>Akcje</td>
         </tr>
 
@@ -197,5 +198,66 @@
         {% endfor %}
       </table>
     </div>
+
+<script type="text/javascript">
+
+function find(elementsID, position) {
+
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById(elementsID);
+  filter = input.value.toUpperCase();
+  table = document.getElementsByTagName("table")[0];
+  table2 = table.getElementsByTagName("tbody")[0];
+  tr = table2.getElementsByTagName("tr");
+
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[position];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+
+function findBy(whichInput) {
+  if (whichInput == 0) {
+    find("IDInput", 0)
+  }
+  else if (whichInput == 1) {
+    find("FirstNameInput", 1)
+  }
+  else if (whichInput == 2) {
+    find("SecondNameInput", 2)
+  }
+  else if (whichInput == 3) {
+    find("LastNameInput", 3)
+  }
+  else if (whichInput == 4) {
+    find("SalaryInput", 4)
+  }
+  else if (whichInput == 5) {
+    find("BonusInput", 5)
+  }
+  else if (whichInput == 6) {
+    find("PhoneInput", 6)
+  }
+  else if (whichInput == 7) {
+    find("EmailInput", 7)
+  }
+  else if (whichInput == 8) {
+    find("DateInput", 8)
+  }
+  else if (whichInput == 9) {
+    find("PositionInput", 9)
+  }
+  else console.log("Coś nie tak")
+}
+</script>
+
   </body>
 </html>

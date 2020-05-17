@@ -78,14 +78,14 @@
       <h2>Oto Twoi uczniowie! Możesz przeglądać i edytować ich dane.</h2>
       <table>
         <tr>
-          <td>Numer</td>
-          <td>Imię</td>
-          <td>Drugie imię</td>
-          <td>Nazwisko</td>
-          <td>Płeć</td>
-          <td>Data urodzenia</td>
-          <td>Klasa</td>
-          <td>Pesel</td>
+          <th>Numer<div class="search-div"><input class="searchbar" type="text" id="IDInput" onkeyup="findBy(0)" placeholder="Szukaj..."></div></th>
+          <th>Imię <div class="search-div"><input class="searchbar" type="text" id="FirstNameInput" onkeyup="findBy(1)" placeholder="Szukaj..."></div></th>
+          <th>Drugie imię <div class="search-div"><input class="searchbar" type="text" id="SecondNameInput" onkeyup="findBy(2)" placeholder="Szukaj..."></div></th>
+          <th>Nazwisko <div class="search-div"><input  class="searchbar" type="text" id="LastNameInput" onkeyup="findBy(3)" placeholder="Szukaj..."></div></th>
+          <th>Płeć <div class="search-div"><input  class="searchbar" type="text" id="GenderInput" onkeyup="findBy(4)" placeholder="Szukaj..."></div></th>
+          <th>Data urodzenia <div class="search-div"><input class="searchbar" type="text" id="BirthDateInput" onkeyup="findBy(5)" placeholder="Szukaj..."></div></th>
+          <th>Klasa <div class="search-div"><input  class="searchbar" type="text" id="GradeInput" onkeyup="findBy(6)" placeholder="Szukaj..."></div></th>
+          <th>Pesel <div class="search-div"><input class="searchbar" type="text" id="PeselInput" onkeyup="findBy(7)" placeholder="Szukaj..."></div></th>
         </tr>
 
         {% for student in allstudents %}
@@ -122,5 +122,86 @@
         {% endfor %}
       </table>
     </div>
+
+<script type="text/javascript">
+   function find(elementsID, position) {
+
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById(elementsID);
+  filter = input.value.toUpperCase();
+  table = document.getElementsByTagName("table")[0];
+  table2 = table.getElementsByTagName("tbody")[0];
+  tr = table2.getElementsByTagName("tr");
+
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[position];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+
+function findBy(whichInput) {
+  if (whichInput == 0) {
+    find("IDInput", 0)
+  }
+  else if (whichInput == 1) {
+    find("FirstNameInput", 1)
+  }
+  else if (whichInput == 2) {
+    find("SecondNameInput", 2)
+  }
+  else if (whichInput == 3) {
+    find("LastNameInput", 3)
+  }
+  else if (whichInput == 4) {
+    find("GenderInput", 4)
+  }
+  else if (whichInput == 5) {
+    find("BirthDateInput", 5)
+  }
+  else if (whichInput == 6) {
+    find("GradeInput", 6)
+  }
+  else if (whichInput == 7) {
+    find("PeselInput", 7)
+  }
+  else console.log("Coś nie tak")
+}
+
+function sortTable() {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementsByTagName("table")[0].getElementsByTagName("tbody")[0];
+
+  switching = true;
+  while (switching) {
+    switching = false;
+    rows = table.getElementsByTagName("tr");
+    console.log(rows)
+    for (i = 1; i < (rows.length - 1); i++) {
+      shouldSwitch = false;
+      console.log("tutaj" + i)
+      x = rows[i].getElementsByTagName("td")[2];
+      y = rows[i + 1].getElementsByTagName("td")[2];
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+
+sortTable();
+</script>
   </body>
 </html>
