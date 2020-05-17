@@ -23,4 +23,3 @@ url('usun2', views.usun2) # usuwanie ucznia
 
 ]
 
-handler404 = ‘school.views.error_404’
