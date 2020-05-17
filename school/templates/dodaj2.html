@@ -108,6 +108,7 @@
     <div class="form">
       <form action="dodawanieUcznia" method="post">
         <div class="input">
+        <h2># Dane ucznia</h2>
           <div class="inputBox">
             <label for="numer"> </label>
             <input id="numer" type="hidden" name="numer" readonly="readonly" />
@@ -174,6 +175,8 @@
               required
             />
           </div>
+ 		
+ 		<h2># Dane rodzica</h2>
           <div class="inputBox">
             <label for="numer_rodzica"></label>
             <input id="numer_rodzica" type="hidden" name="numer_rodzica" readonly="readonly" />
@@ -232,7 +235,7 @@
               required
             />
           </div>
-
+          <h2># Dane adresowe</h2>
           <div class="inputBox">
             <label for="numer_adresu"></label>
             <input id="numer_adresu" type="hidden" name="numer_adresu" readonly="readonly" />
@@ -291,5 +294,6 @@
         </div>
       </form>
     </div>
+    <script src="/static/js/dodaj2.js"></script>
   </body>
 </html>
