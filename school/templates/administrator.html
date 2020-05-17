@@ -101,6 +101,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Uczniowie</title>
+    <link rel="stylesheet" href="/static/searchstyle.css" />
     <link rel="stylesheet" href="/static/style/administrator/css/style.min.css" />
   </head>
 
@@ -126,14 +127,14 @@
       <h2>Lista wszystkich uczniów</h2>
       <table>
         <tr>
-          <th>ID <input style="width:30px" type="text" id="IDInput" onkeyup="findBy(0)" placeholder="ID"></th>
-          <th>Imię <input style="width:30px" type="text" id="FirstNameInput" onkeyup="findBy(1)" placeholder="Imię"></th>
-          <th>Drugie imię <input style="width:30px" type="text" id="SecondNameInput" onkeyup="findBy(2)" placeholder="Drugie imię"></th>
-          <th>Nazwisko <input  style="width:30px" type="text" id="LastNameInput" onkeyup="findBy(3)" placeholder="Szukaj"></th>
-          <th>Płeć <input  style="width:30px" type="text" id="GenderInput" onkeyup="findBy(4)" placeholder="Szukaj"></th>
-          <th>Data urodzenia <input style="width:30px"  type="text" id="BirthDateInput" onkeyup="findBy(5)" placeholder="Szukaj"></th>
-          <th>Klasa <input  style="width:30px" type="text" id="GradeInput" onkeyup="findBy(6)" placeholder="Szukaj"></th>
-          <th>Pesel <input style="width:30px" type="text" id="PeselInput" onkeyup="findBy(7)" placeholder="Szukaj"></th>
+          <th>ID <div class="search-div"><input class="searchbar" type="text" id="IDInput" onkeyup="findBy(0)" placeholder="Szukaj..."></div></th>
+          <th>Imię <div class="search-div"><input class="searchbar" type="text" id="FirstNameInput" onkeyup="findBy(1)" placeholder="Szukaj..."></div></th>
+          <th>Drugie imię <div class="search-div"><input class="searchbar" type="text" id="SecondNameInput" onkeyup="findBy(2)" placeholder="Szukaj..."></div></th>
+          <th>Nazwisko <div class="search-div"><input  class="searchbar" type="text" id="LastNameInput" onkeyup="findBy(3)" placeholder="Szukaj..."></div></th>
+          <th>Płeć <div class="search-div"><input  class="searchbar" type="text" id="GenderInput" onkeyup="findBy(4)" placeholder="Szukaj..."></div></th>
+          <th>Data urodzenia <div class="search-div"><input class="searchbar" type="text" id="BirthDateInput" onkeyup="findBy(5)" placeholder="Szukaj..."></div></th>
+          <th>Klasa <div class="search-div"><input  class="searchbar" type="text" id="GradeInput" onkeyup="findBy(6)" placeholder="Szukaj..."></div></th>
+          <th>Pesel <div class="search-div"><input class="searchbar" type="text" id="PeselInput" onkeyup="findBy(7)" placeholder="Szukaj..."></div></th>
           <th>Akcje</th>
         </tr>
 
