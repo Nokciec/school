@@ -392,3 +392,7 @@ def usun2(request):
     allEmployees = Students.objects.all()
     context = {'allstudents': allEmployees, 'klasy' : allClasses}
     return render(request, 'administrator.html', context)
+
+def error_404(request, exception):
+        data = {}
+        return render(request,'404.html', data)
