@@ -72,10 +72,19 @@
     <title>Uczniowie - widok nauczyciela</title>
     <link rel="stylesheet" href="/static/searchstyle.css" />
     <link rel="stylesheet" href="/static/style/nauczyciel/css/style.min.css" />
+    <link rel="stylesheet" href="/static/style/administrator2/css/style.min.css" />
   </head>
 
   <body>
     <div class="container">
+      <div class="addEmpl">
+        <button style="margin-right:20px" onclick="goBack()">Powrót</button>
+        <button style="margin-left: 20px" type="submit" action="submit">
+              <a href="https://enigmatic-river-40788.herokuapp.com/login">Wyloguj się</a>
+         </button>
+
+      </div>
+
       <h2>Oto Twoi uczniowie! Możesz przeglądać i edytować ich dane.</h2>
       <table>
         <tr>
@@ -200,6 +209,10 @@ function sortTable() {
       switching = true;
     }
   }
+}
+
+function goBack() {
+  window.history.back();
 }
 
 sortTable();
