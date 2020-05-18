@@ -13,3 +13,8 @@
 .search-div {
 	align-self: center;
 }
+
+a:link, a:visited  {
+	text-decoration: none;
+	color: black;
+}

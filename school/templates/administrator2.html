@@ -116,6 +116,7 @@
   <body>
     <div class="container">
       <div class="addEmpl">
+        <button style="margin-right:20px" onclick="goBack()">Powrót</button>
         <form method="POST" action="dodaj1">
           <input
             type="hidden"
@@ -130,6 +131,9 @@
             </button>
           </div>
         </form>
+        <button style="margin-left: 20px" type="submit" action="submit">
+              <a href="https://enigmatic-river-40788.herokuapp.com/login">Wyloguj się</a>
+         </button>
       </div>
 
       <h2>Lista wszystkich pracowników</h2>
@@ -257,7 +261,11 @@ function findBy(whichInput) {
   }
   else console.log("Coś nie tak")
 }
-</script>
 
+function goBack() {
+  window.history.back();
+}
+
+</script>
   </body>
 </html>

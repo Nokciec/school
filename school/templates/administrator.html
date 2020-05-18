@@ -108,20 +108,19 @@
   <body>
     <div class="container">
       <div class="addEmpl">
-        <form method="POST" action="dodaj2">
-          <input
-            type="hidden"
-            name="nr_pracownika"
-            value="1"
-            class="form-control"
-            readonly="readonly"
-          />
+        <button style="margin-right:20px" onclick="goBack()">Powrót</button>
+        <form method="POST" action="http://enigmatic-river-40788.herokuapp.com/dodaj2">
+          <input type="hidden" name="nr_pracownika" value="1" class="form-control" readonly="readonly">
           <div>
             <button type="submit" action="submit">
               Dodaj nowego ucznia!
             </button>
           </div>
         </form>
+        <button style="margin-left: 20px" type="submit" action="submit">
+              <a href="https://enigmatic-river-40788.herokuapp.com/login">Wyloguj się</a>
+        </button>
+
       </div>
 
       <h2>Lista wszystkich uczniów</h2>
@@ -239,6 +238,10 @@ function findBy(whichInput) {
     find("PeselInput", 7)
   }
   else console.log("Coś nie tak")
+}
+
+function goBack() {
+  window.history.back();
 }
 </script>
   </body>
