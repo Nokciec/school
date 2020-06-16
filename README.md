@@ -1,2 +1,2 @@
 # school
-project for uni
+project for uni - projektowanie aplikacji internetowych i mobilnych 
